@@ -364,13 +364,15 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
       }
       
       // Object Properties Button
-      this.addproperty_button = this.getButton('Properties','edit','Object Properties');
-      this.addproperty_button.addEventListener('click',function() {
-        self.toggleAddProperty();
-      });
-      this.addproperty_controls.appendChild(this.addproperty_button);
-      this.addproperty_controls.appendChild(this.addproperty_holder);
-      this.refreshAddProperties();
+      if(!this.jsoneditor.options.disable_properties_selector) {
+        this.addproperty_button = this.getButton('Properties','edit','Object Properties');
+        this.addproperty_button.addEventListener('click',function() {
+          self.toggleAddProperty();
+        });
+        this.addproperty_controls.appendChild(this.addproperty_button);
+        this.addproperty_controls.appendChild(this.addproperty_holder);
+        this.refreshAddProperties();
+      }
     }
     
     this.jsoneditor.notifyWatchers(this.path);
